@@ -62,6 +62,17 @@ mixin _$ChatsController on _ChatsControllerBase, Store {
   }
 
   @override
+  dynamic changeMessage() {
+    final _$actionInfo = _$_ChatsControllerBaseActionController.startAction(
+        name: '_ChatsControllerBase.changeMessage');
+    try {
+      return super.changeMessage();
+    } finally {
+      _$_ChatsControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setFilter(String value) {
     final _$actionInfo = _$_ChatsControllerBaseActionController.startAction(
         name: '_ChatsControllerBase.setFilter');

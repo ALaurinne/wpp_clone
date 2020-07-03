@@ -147,6 +147,12 @@ abstract class _ChatsControllerBase with Store {
     ));
   }
 
+  // Alterando dado no chat
+  @action
+  changeMessage() {
+    chatListItems.elementAt(0).lastMessage = "Nova mensagem";
+  }
+
   // Alterando Filtro
   @action
   setFilter(String value) {

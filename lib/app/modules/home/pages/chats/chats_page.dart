@@ -29,6 +29,7 @@ class _ChatsPageState extends ModularState<ChatsPage, ChatsController> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           controller.newChat();
+          controller.changeMessage();
         },
         child: Icon(
           Icons.chat,
