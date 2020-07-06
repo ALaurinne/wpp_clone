@@ -29,12 +29,20 @@ class HomeModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => HomePage()),
-        Router('/screen',
-            child: (_, args) => ChatScreenPage(
-                  person: args.data,
-                )),
-        Router('/story', child: (_, args) => StoryViewPage()),
+        Router(
+          Modular.initialRoute,
+          child: (_, args) => HomePage(),
+        ),
+        Router(
+          '/screen',
+          child: (_, args) => ChatScreenPage(
+            person: args.data,
+          ),
+        ),
+        Router(
+          '/story',
+          child: (_, args) => StoryViewPage(),
+        ),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

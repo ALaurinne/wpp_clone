@@ -35,7 +35,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             appBar: AppBar(
               title: controller.isSearching
                   ? AppBarSearch(
-                      //TODO Change to page with params
                       searchChat: controller.searchChat,
                       onSearchChange: controller.setTextSearch,
                       onClear: () {
@@ -81,7 +80,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
             body: TabBarView(
               children: <Widget>[
-                //TODO Change to pages
                 CameraPage(),
                 ChatsPage(text: controller.textSearch),
                 StoryPage(),
