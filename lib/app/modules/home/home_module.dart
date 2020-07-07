@@ -35,9 +35,7 @@ class HomeModule extends ChildModule {
         ),
         Router(
           '/screen',
-          child: (_, args) => ChatScreenPage(
-            person: args.data,
-          ),
+          child: (_, args) => ChatScreenPage(person: args.data),
         ),
         Router(
           '/story',

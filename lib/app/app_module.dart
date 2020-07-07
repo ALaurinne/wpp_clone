@@ -1,5 +1,7 @@
 import 'package:whatsapp_clone/app/modules/login/login_module.dart';
-
+import 'package:whatsapp_clone/app/shared/auth/auth_controller.dart';
+import 'package:whatsapp_clone/app/shared/auth/repositories/auth_repository.dart';
+import 'package:whatsapp_clone/app/shared/auth/repositories/auth_repository_interface.dart';
 import 'app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,8 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
+        Bind((i) => AuthController()),
+        Bind<IAuthRepository>((i) => AuthRepository()),
       ];
 
   @override

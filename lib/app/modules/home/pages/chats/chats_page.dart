@@ -95,7 +95,6 @@ class ChatsListView extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                //todo change to modular
                 Modular.to.pushNamed('/screen', arguments: list[i]);
                 // Navigator.push(
                 //   context,

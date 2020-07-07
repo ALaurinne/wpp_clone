@@ -32,6 +32,72 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       child: Observer(
         builder: (_) {
           return Scaffold(
+            drawer: Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  DrawerHeader(
+                    child: ListView(
+                      padding: EdgeInsets.all(5),
+                      children: <Widget>[
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          // backgroundImage: NetworkImage(
+                          //   "https://scontent.fssa7-1.fna.fbcdn.net/v/t1.0-9/82614383_2716249885097419_3396061057905590272_n.jpg?_nc_cat=110&_nc_sid=7aed08&_nc_ohc=vnnyB8GH9QAAX_PcP8I&_nc_ht=scontent.fssa7-1.fna&oh=167bc2a94c8f7809c3b2fe9980ea56aa&oe=5F08E134")
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5),
+                        ),
+                        Text(
+                          'Olá, Fulano',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5),
+                        ),
+                        Text(
+                          'Número',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5),
+                        ),
+                        Text(
+                          'Email',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.arrow_back,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Logout',
+                      // textAlign: TextAlign.center,
+                    ),
+                    onTap: controller.logout,
+                  ),
+                ],
+              ),
+            ),
             appBar: AppBar(
               title: controller.isSearching
                   ? AppBarSearch(

@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "25668281459",
+    "firebase_url": "https://estagio-clima.firebaseio.com",
+    "project_id": "estagio-clima",
+    "storage_bucket": "estagio-clima.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25668281459:android:956b5701e9a3a3f61c7606",
+        "android_client_info": {
+          "package_name": "com.example.whatsapp_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25668281459-avfoaus9ei3o0kjjs986q3q97c29209p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfS_MAPWnIw7R3htS5SpKHq-QaH2szzBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25668281459-avfoaus9ei3o0kjjs986q3q97c29209p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "25668281459-ig59cjlifemh0obfk7171uemcqqe2r5u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.geekbusinesslab.geekchat"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25668281459:android:8bfbdfe3d3826f821c7606",
+        "android_client_info": {
+          "package_name": "com.geekbusinesslab.geekchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25668281459-avfoaus9ei3o0kjjs986q3q97c29209p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfS_MAPWnIw7R3htS5SpKHq-QaH2szzBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25668281459-avfoaus9ei3o0kjjs986q3q97c29209p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "25668281459-ig59cjlifemh0obfk7171uemcqqe2r5u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.geekbusinesslab.geekchat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
