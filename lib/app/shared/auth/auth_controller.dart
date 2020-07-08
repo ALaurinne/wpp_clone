@@ -15,7 +15,15 @@ abstract class _AuthControllerBase with Store {
 
   @action
   Future loginWithEmailPassword(String email, String password) async {
-    user = await _authRepository.getEmailPasswordLogin(email, password);
+    try {
+      user = await _authRepository.getEmailPasswordLogin(email, password);
+      print("AUTH CONTROLLER");
+      print(user);
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return e;
+    }
   }
 
   @action

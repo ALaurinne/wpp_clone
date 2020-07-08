@@ -23,6 +23,8 @@ abstract class _LoginControllerBase with Store {
     try {
       loading = true;
       user = await auth.loginWithEmailPassword(email, password);
+      print("LOGIN CONTROLLER");
+      print(user);
       Modular.to.pushReplacementNamed('/home', arguments: user);
     } catch (e) {
       loading = false;

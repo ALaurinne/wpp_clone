@@ -13,7 +13,8 @@ class AuthRepository implements IAuthRepository {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
-      print("entrooo");
+      print("AUTH REPOSITORY");
+      print(user);
       return user;
     } catch (e) {
       print(e.toString());

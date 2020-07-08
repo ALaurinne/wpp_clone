@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,7 +13,8 @@ import 'pages/camera/camera_page.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  const HomePage({Key key, this.title = "Home"}) : super(key: key);
+  final FirebaseUser user;
+  const HomePage({Key key, this.title = "Home", this.user}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -42,14 +44,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       children: <Widget>[
                         CircleAvatar(
                           backgroundColor: Colors.grey,
-                          // backgroundImage: NetworkImage(
-                          //   "https://scontent.fssa7-1.fna.fbcdn.net/v/t1.0-9/82614383_2716249885097419_3396061057905590272_n.jpg?_nc_cat=110&_nc_sid=7aed08&_nc_ohc=vnnyB8GH9QAAX_PcP8I&_nc_ht=scontent.fssa7-1.fna&oh=167bc2a94c8f7809c3b2fe9980ea56aa&oe=5F08E134")
+                          // backgroundImage:
+                          //     NetworkImage('${widget.user.photoUrl}'),
                         ),
                         Padding(
                           padding: EdgeInsets.all(5),
                         ),
                         Text(
-                          'Olá, Fulano',
+                          'Olá ${widget.user.displayName}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -60,7 +62,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           padding: EdgeInsets.all(5),
                         ),
                         Text(
-                          'Número',
+                          '${widget.user.phoneNumber}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -71,7 +73,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           padding: EdgeInsets.all(5),
                         ),
                         Text(
-                          'Email',
+                          '${widget.user.email}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
