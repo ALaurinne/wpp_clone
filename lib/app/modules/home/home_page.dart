@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/config/config.dart';
 import 'package:whatsapp_clone/app/modules/home/components/appbarsearch/appbarsearch_page.dart';
 import 'package:whatsapp_clone/app/modules/home/components/appbartitle/appbartitle_page.dart';
+import 'package:whatsapp_clone/app/modules/home/components/homedrawer/home_drawer_page.dart';
 import 'package:whatsapp_clone/app/modules/home/pages/chats/chats_page.dart';
 import 'package:whatsapp_clone/app/modules/home/pages/story/story_page.dart';
 import 'home_controller.dart';
@@ -48,18 +49,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   : TabBar(
                       indicatorColor: Colors.white,
                       tabs: <Widget>[
-                        Tab(
-                          icon: Icon(Icons.camera_alt),
-                        ),
-                        Tab(
-                          child: Text("CONVERSAS"),
-                        ),
-                        Tab(
-                          child: Text("STATUS"),
-                        ),
-                        Tab(
-                          child: Text("CHAMADAS"),
-                        ),
+                        Tab(icon: Icon(Icons.camera_alt)),
+                        Tab(child: Text("CONVERSAS")),
+                        Tab(child: Text("STATUS")),
+                        Tab(child: Text("CHAMADAS")),
                       ],
                     ),
               actions: !controller.isSearching
@@ -88,87 +81,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({
-    Key key,
-    @required this.user,
-    @required this.logout,
-  }) : super(key: key);
-
-  final FirebaseUser user;
-  final Function logout;
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: ListView(
-              padding: EdgeInsets.all(5),
-              children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  backgroundImage: user.photoUrl.toString().isNotEmpty
-                      ? NetworkImage('${user.photoUrl}')
-                      : Colors.grey,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                ),
-                Text(
-                  'Olá ${user.displayName}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                ),
-                Text(
-                  '${user.phoneNumber}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                ),
-                Text(
-                  '${user.email}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: primaryColor,
-            ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-            title: Text(
-              'Logout',
-            ),
-            onTap: logout,
-          ),
-        ],
       ),
     );
   }

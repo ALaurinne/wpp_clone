@@ -84,6 +84,17 @@ mixin _$ChatsController on _ChatsControllerBase, Store {
   }
 
   @override
+  dynamic accessChat(ChatListItem person) {
+    final _$actionInfo = _$_ChatsControllerBaseActionController.startAction(
+        name: '_ChatsControllerBase.accessChat');
+    try {
+      return super.accessChat(person);
+    } finally {
+      _$_ChatsControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 chatListItems: ${chatListItems},

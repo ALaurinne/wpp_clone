@@ -39,6 +39,21 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
+  final _$isValidAtom = Atom(name: '_LoginControllerBase.isValid');
+
+  @override
+  bool get isValid {
+    _$isValidAtom.reportRead();
+    return super.isValid;
+  }
+
+  @override
+  set isValid(bool value) {
+    _$isValidAtom.reportWrite(value, super.isValid, () {
+      super.isValid = value;
+    });
+  }
+
   final _$loginWithEmailAsyncAction =
       AsyncAction('_LoginControllerBase.loginWithEmail');
 
@@ -50,6 +65,17 @@ mixin _$LoginController on _LoginControllerBase, Store {
 
   final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase');
+
+  @override
+  dynamic formsValidation(dynamic formKey) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.formsValidation');
+    try {
+      return super.formsValidation(formKey);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   String emailValidation(String value) {
@@ -88,7 +114,8 @@ mixin _$LoginController on _LoginControllerBase, Store {
   String toString() {
     return '''
 user: ${user},
-loading: ${loading}
+loading: ${loading},
+isValid: ${isValid}
     ''';
   }
 }

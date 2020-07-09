@@ -18,17 +18,29 @@ abstract class _LoginControllerBase with Store {
   @observable
   bool loading = false;
 
+  @observable
+  bool isValid = false;
+
   @action
   Future loginWithEmail(String email, String password) async {
-    try {
-      loading = true;
-      user = await auth.getEmailPasswordLogin(email, password);
-
-      Modular.to.pushReplacementNamed('/home', arguments: user);
-    } catch (e) {
-      loading = false;
-      print(e.toString());
+    if (isValid) {
+      try {
+        loading = true;
+        user = await auth.getEmailPasswordLogin(email, password);
+        Modular.to.pushReplacementNamed('/home', arguments: user);
+      } catch (e) {
+        print(e.toString());
+        loading = false;
+      }
     }
+  }
+
+  @action
+  formsValidation(formKey) {
+    isValid = formKey.currentState.validate() ? true : false;
+    loading = isValid
+        ? true
+        : false; // criei esse pq ou a internet tá muito boa, ou o de cima não tá funcionando.
   }
 
   @action
