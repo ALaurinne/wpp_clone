@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 
 // APP BAR QUANDO COMEÇA A BUSCA
 class AppBarSearch extends StatefulWidget {
@@ -30,7 +30,7 @@ class _AppBarSearchState extends State<AppBarSearch> {
         ),
         prefixIcon: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: primaryColor,
+          color: AppColors.primaryColor,
           onPressed: widget.searchChat,
         ),
         suffixIcon: IconButton(

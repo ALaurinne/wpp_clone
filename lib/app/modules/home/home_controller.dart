@@ -7,7 +7,7 @@ part 'home_controller.g.dart';
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
-  AuthService auth = Modular.get();
+  final AuthService auth;
 
   @observable
   String textSearch = '';
@@ -31,4 +31,6 @@ abstract class _HomeControllerBase with Store {
     await auth.getLogout();
     Modular.to.pushReplacementNamed('/');
   }
+
+  _HomeControllerBase(this.auth);
 }

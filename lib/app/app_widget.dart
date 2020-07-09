@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 
 class AppWidget extends StatelessWidget {
   @override
@@ -10,10 +10,10 @@ class AppWidget extends StatelessWidget {
       title: 'Flutter Slidy',
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: primaryColor,
+        primaryColor: AppColors.primaryColor,
       ),
-      darkTheme:
-          ThemeData(primaryColor: primaryColor, brightness: Brightness.dark),
+      darkTheme: ThemeData(
+          primaryColor: AppColors.primaryColor, brightness: Brightness.dark),
       initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,
     );

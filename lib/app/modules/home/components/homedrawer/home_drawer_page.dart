@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({
@@ -64,7 +64,7 @@ class HomeDrawer extends StatelessWidget {
               ],
             ),
             decoration: BoxDecoration(
-              color: primaryColor,
+              color: AppColors.primaryColor,
             ),
           ),
           ListTile(

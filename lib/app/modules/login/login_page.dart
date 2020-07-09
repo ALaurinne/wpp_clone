@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'package:whatsapp_clone/app/modules/login/components/loginform/login_form_page.dart';
 import 'login_controller.dart';
 

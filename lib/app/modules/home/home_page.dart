@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'package:whatsapp_clone/app/modules/home/components/appbarsearch/appbarsearch_page.dart';
 import 'package:whatsapp_clone/app/modules/home/components/appbartitle/appbartitle_page.dart';
 import 'package:whatsapp_clone/app/modules/home/components/homedrawer/home_drawer_page.dart';
@@ -43,7 +43,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       onClear: () => controller.setTextSearch(''),
                     )
                   : AppBarTitle(),
-              backgroundColor: primaryColor,
+              backgroundColor: AppColors.primaryColor,
               bottom: controller.isSearching
                   ? null
                   : TabBar(

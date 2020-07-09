@@ -5,6 +5,7 @@ import 'package:whatsapp_clone/app/modules/home/pages/chat_screen/chat_screen_pa
 import 'package:whatsapp_clone/app/modules/home/pages/chats/chats_controller.dart';
 import 'package:whatsapp_clone/app/modules/home/pages/story/story_list_controller.dart';
 import 'package:whatsapp_clone/app/modules/home/pages/story_view/story_view_page.dart';
+import 'package:whatsapp_clone/app/shared/auth/services/auth_service.dart';
 import 'pages/camera/camera_controller.dart';
 import 'pages/calls/calls_controller.dart';
 import 'home_controller.dart';
@@ -24,7 +25,7 @@ class HomeModule extends ChildModule {
         Bind((i) => CallsController()),
         Bind((i) => AppbartitleController()),
         Bind((i) => AppbarsearchController()),
-        Bind((i) => HomeController()),
+        Bind((i) => HomeController(i.get<AuthService>()))
       ];
 
   @override

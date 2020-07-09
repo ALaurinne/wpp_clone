@@ -10,7 +10,7 @@ class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
   // chama auth com o controller do AuthController
-  AuthService auth = Modular.get();
+  final AuthService auth;
 
   @observable
   FirebaseUser user;
@@ -61,7 +61,7 @@ abstract class _LoginControllerBase with Store {
   @action
   setUser(FirebaseUser value) => user = value;
 
-  _LoginControllerBase() {
+  _LoginControllerBase(this.auth) {
     auth.getUser().then(setUser);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'package:whatsapp_clone/app/modules/home/models/chat_list_item_models.dart';
 import 'chats_controller.dart';
 
@@ -36,7 +36,7 @@ class _ChatsPageState extends ModularState<ChatsPage, ChatsController> {
           Icons.chat,
           color: Colors.white,
         ),
-        backgroundColor: primaryColor,
+        backgroundColor: AppColors.primaryColor,
       ),
     );
   }
@@ -65,7 +65,8 @@ class ChatsListView extends StatelessWidget {
                     list[i].date,
                     style: list[i].notRead
                         ? TextStyle(
-                            color: secondaryColor, fontWeight: FontWeight.bold)
+                            color: AppColors.secondaryColor,
+                            fontWeight: FontWeight.bold)
                         : TextStyle(color: Colors.grey),
                   ),
                   Padding(
@@ -75,7 +76,7 @@ class ChatsListView extends StatelessWidget {
                     width: list[i].notRead ? 30 : 0, // gambiarra
                     height: list[i].notRead ? 30 : 0, // mais gambiarra
                     decoration: BoxDecoration(
-                      color: secondaryColor,
+                      color: AppColors.secondaryColor,
                       borderRadius: BorderRadius.all(Radius.circular(100)),
                     ),
                     child: Center(

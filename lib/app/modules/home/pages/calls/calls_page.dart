@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'calls_controller.dart';
 
 class CallsPage extends StatefulWidget {
@@ -26,7 +26,7 @@ class _CallsPageState extends ModularState<CallsPage, CallsController> {
             onPressed: () {},
             icon: Icon(
               controller.callListItem[i].isCall ? Icons.call : Icons.videocam,
-              color: primaryColor,
+              color: AppColors.primaryColor,
             ),
           ),
           leading: CircleAvatar(

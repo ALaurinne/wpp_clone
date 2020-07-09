@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm(
@@ -47,72 +47,73 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (_) {
-        return Form(
-          // para utlizar o formkey
-          key: formKey,
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                controller: emailFieldController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: "Email",
-                  labelStyle: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                  ),
-                ),
+    return Form(
+      // para utlizar o formkey
+      key: formKey,
+      child: Column(
+        children: <Widget>[
+          TextFormField(
+            controller: emailFieldController,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              labelText: "Email",
+              labelStyle: TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.w400,
+                fontSize: 20,
+              ),
+            ),
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+            validator: widget.emailValidation,
+          ),
+          SizedBox(height: 20),
+          TextFormField(
+            controller: passFieldController,
+            keyboardType: TextInputType.text,
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: "Password",
+              labelStyle: TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.w400,
+                fontSize: 20,
+              ),
+            ),
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+            validator: widget.passwordValidation,
+          ),
+          Container(
+            height: 40,
+            alignment: Alignment.centerRight,
+            child: FlatButton(
+              onPressed: () {},
+              child: Text(
+                "Forgot Password?",
                 style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-                validator: widget.emailValidation,
-              ),
-              SizedBox(height: 20),
-              TextFormField(
-                controller: passFieldController,
-                keyboardType: TextInputType.text,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: "Password",
-                  labelStyle: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                  ),
-                ),
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-                validator: widget.passwordValidation,
-              ),
-              Container(
-                height: 40,
-                alignment: Alignment.centerRight,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
+                  color: Colors.grey,
                 ),
               ),
-              SizedBox(height: 40),
-              widget.loading
+            ),
+          ),
+          SizedBox(height: 40),
+          Observer(
+            builder: (_) {
+              return widget.loading
                   ? CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
                     )
                   : Container(
                       height: 60,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: primaryColor,
+                        color: AppColors.primaryColor,
                         borderRadius: BorderRadius.all(
                           Radius.circular(5),
                         ),
@@ -132,11 +133,11 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                         ),
                       ),
-                    ),
-            ],
+                    );
+            },
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

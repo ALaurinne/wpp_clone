@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:whatsapp_clone/app/config/config.dart';
+import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'package:whatsapp_clone/app/modules/home/models/chat_list_item_models.dart';
 import 'chat_screen_controller.dart';
 import 'models/chat_message_models.dart';
@@ -104,8 +104,8 @@ class _ChatScreenPageState
                 ),
               ),
               Container(
-                decoration:
-                    BoxDecoration(color: primaryColor, shape: BoxShape.circle),
+                decoration: BoxDecoration(
+                    color: AppColors.primaryColor, shape: BoxShape.circle),
                 child: IconButton(
                   icon: Icon(
                     controller.isTyping ? Icons.send : Icons.mic,
@@ -129,7 +129,7 @@ class _ChatScreenPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: chatBackgroundColor,
+      backgroundColor: AppColors.chatBackgroundColor,
       appBar: AppBar(
         leading: ChatLeading(profileUrl: widget.person.profileUrl),
         title: Column(
