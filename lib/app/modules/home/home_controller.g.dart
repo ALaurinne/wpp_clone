@@ -39,6 +39,13 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$logoutAsyncAction = AsyncAction('_HomeControllerBase.logout');
+
+  @override
+  Future logout() {
+    return _$logoutAsyncAction.run(() => super.logout());
+  }
+
   final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase');
 

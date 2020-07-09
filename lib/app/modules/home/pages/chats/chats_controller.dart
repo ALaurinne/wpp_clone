@@ -1,3 +1,4 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:whatsapp_clone/app/modules/home/models/chat_list_item_models.dart';
 part 'chats_controller.g.dart';
@@ -5,54 +6,16 @@ part 'chats_controller.g.dart';
 class ChatsController = _ChatsControllerBase with _$ChatsController;
 
 abstract class _ChatsControllerBase with Store {
-  // Pesquisa anterior
-  // buildSearchList(searchText) {
-  //   bool contains(ChatListItem i) =>
-  //       i.personName.toLowerCase().contains(searchText.toLowerCase());
-
-  //   return searchText.isEmpty ? chatListItems
-  //       : chatListItems.where(contains).toList();
-  // }
-
-  // Criando o filtro
-  // final filter = BehaviorSubject<String>.seeded('');
-
-  // Criando a lista inicial
-  // final chatListItems = BehaviorSubject<List<ChatListItem>>.seeded();
-
-  // Criando a lista que irá ser mostrada
-  // @observable
-  // ObservableStream<List<ChatListItem>> output;
-
-  // Fazendo a busca com RX
-  // _ChatsControllerBase() {
-  //   output = Rx.combineLatest2<List<ChatListItem>, String, List<ChatListItem>>(
-  //     chatListItems.stream,
-  //     filter.stream,
-  //     (list, filter) {
-  //       return filter.isEmpty
-  //           ? list
-  //           : list
-  //               .where((item) => item.personName
-  //                   .toLowerCase()
-  //                   .contains(filter.toLowerCase()))
-  //               .toList();
-  //     },
-  //   ).asObservable(initialValue: []);
-  // }
-
-  // @observable
-  // String filter = '';
-
   @observable
   ObservableList<ChatListItem> chatListItems = [
     ChatListItem(
-        profileUrl:
-            "https://media-exp1.licdn.com/dms/image/C4D03AQGiVrw4tHuwZQ/profile-displayphoto-shrink_400_400/0?e=1597276800&v=beta&t=pnlHgBNnmwOAnYUxSq6UGCakbWfEev2SU8rXc6b58wY",
-        personName: "Laurinne Oliveira",
-        lastMessage: "Vai dar certo",
-        date: "15:00",
-        notRead: true),
+      profileUrl:
+          "https://media-exp1.licdn.com/dms/image/C4D03AQGiVrw4tHuwZQ/profile-displayphoto-shrink_400_400/0?e=1597276800&v=beta&t=pnlHgBNnmwOAnYUxSq6UGCakbWfEev2SU8rXc6b58wY",
+      personName: "Laurinne Oliveira",
+      lastMessage: "Vai dar certo",
+      date: "15:00",
+      notRead: false,
+    ),
     ChatListItem(
       profileUrl:
           "https://scontent.fssa7-1.fna.fbcdn.net/v/t1.0-9/82614383_2716249885097419_3396061057905590272_n.jpg?_nc_cat=110&_nc_sid=7aed08&_nc_ohc=vnnyB8GH9QAAX_PcP8I&_nc_ht=scontent.fssa7-1.fna&oh=167bc2a94c8f7809c3b2fe9980ea56aa&oe=5F08E134",
@@ -75,7 +38,7 @@ abstract class _ChatsControllerBase with Store {
       personName: "Laurinne",
       lastMessage: "Vai dar certo",
       date: "15:00",
-      notRead: false,
+      notRead: true,
     ),
     ChatListItem(
       profileUrl:
@@ -124,7 +87,6 @@ abstract class _ChatsControllerBase with Store {
 
   @computed
   List<ChatListItem> get listFiltered {
-    print("filtragem");
     return filter.isEmpty
         ? chatListItems
         : chatListItems
@@ -151,6 +113,7 @@ abstract class _ChatsControllerBase with Store {
   @action
   changeMessage() {
     chatListItems.elementAt(0).lastMessage = "Nova mensagem";
+    chatListItems.elementAt(0).notRead = true;
   }
 
   // Alterando Filtro
@@ -158,4 +121,8 @@ abstract class _ChatsControllerBase with Store {
   setFilter(String value) {
     return filter = value;
   }
+
+  @action
+  accessChat(ChatListItem person) =>
+      Modular.to.pushNamed('/home/screen', arguments: person);
 }

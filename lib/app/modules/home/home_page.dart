@@ -23,7 +23,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends ModularState<HomePage, HomeController> {
   //use 'controller' variable to access controller
 
-  // final controller = HomeController();
   String text;
 
   @override
@@ -34,80 +33,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       child: Observer(
         builder: (_) {
           return Scaffold(
-            drawer: Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  DrawerHeader(
-                    child: ListView(
-                      padding: EdgeInsets.all(5),
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          // backgroundImage:
-                          //     NetworkImage('${widget.user.photoUrl}'),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5),
-                        ),
-                        Text(
-                          'Olá ${widget.user.displayName}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5),
-                        ),
-                        Text(
-                          '${widget.user.phoneNumber}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5),
-                        ),
-                        Text(
-                          '${widget.user.email}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                    ),
-                    title: Text(
-                      'Logout',
-                      // textAlign: TextAlign.center,
-                    ),
-                    onTap: controller.logout,
-                  ),
-                ],
-              ),
-            ),
+            drawer: HomeDrawer(user: widget.user, logout: controller.logout),
             appBar: AppBar(
               title: controller.isSearching
                   ? AppBarSearch(
                       searchChat: controller.searchChat,
                       onSearchChange: controller.setTextSearch,
-                      onClear: () {
-                        controller.setTextSearch('');
-                      },
+                      onClear: () => controller.setTextSearch(''),
                     )
                   : AppBarTitle(),
               backgroundColor: primaryColor,
@@ -156,6 +88,87 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class HomeDrawer extends StatelessWidget {
+  const HomeDrawer({
+    Key key,
+    @required this.user,
+    @required this.logout,
+  }) : super(key: key);
+
+  final FirebaseUser user;
+  final Function logout;
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: ListView(
+              padding: EdgeInsets.all(5),
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  backgroundImage: user.photoUrl.toString().isNotEmpty
+                      ? NetworkImage('${user.photoUrl}')
+                      : Colors.grey,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5),
+                ),
+                Text(
+                  'Olá ${user.displayName}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5),
+                ),
+                Text(
+                  '${user.phoneNumber}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5),
+                ),
+                Text(
+                  '${user.email}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            decoration: BoxDecoration(
+              color: primaryColor,
+            ),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            title: Text(
+              'Logout',
+            ),
+            onTap: logout,
+          ),
+        ],
       ),
     );
   }

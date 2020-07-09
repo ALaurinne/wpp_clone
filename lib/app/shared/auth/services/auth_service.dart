@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'auth_repository_interface.dart';
+import 'auth_service_interface.dart';
 
-class AuthRepository implements IAuthRepository {
+class AuthService implements IAuthService {
   //
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -13,8 +13,6 @@ class AuthRepository implements IAuthRepository {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
-      print("AUTH REPOSITORY");
-      print(user);
       return user;
     } catch (e) {
       print(e.toString());

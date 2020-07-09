@@ -25,6 +25,7 @@ class _ChatsPageState extends ModularState<ChatsPage, ChatsController> {
     return Scaffold(
       body: ChatsListView(
         list: controller.listFiltered,
+        accessChat: controller.accessChat,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -43,9 +44,10 @@ class _ChatsPageState extends ModularState<ChatsPage, ChatsController> {
 
 // Lista de conversas
 class ChatsListView extends StatelessWidget {
-  const ChatsListView({Key key, this.list}) : super(key: key);
+  const ChatsListView({Key key, this.list, this.accessChat}) : super(key: key);
 
   final List<ChatListItem> list;
+  final Function accessChat;
 
   @override
   Widget build(BuildContext context) {
@@ -94,15 +96,7 @@ class ChatsListView extends StatelessWidget {
                   list[i].profileUrl,
                 ),
               ),
-              onTap: () {
-                Modular.to.pushNamed('/screen', arguments: list[i]);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => ChatScreen(person: list[i]),
-                //   ),
-                // );
-              },
+              onTap: () => accessChat(list[i]),
             );
           },
           separatorBuilder: (ctx, i) {

@@ -26,10 +26,7 @@ class _StoryViewPageState extends ModularState<StoryViewPage, StoryController> {
       child: StoryView(
         stories,
         controller: controller,
-        onComplete: () {
-          //todo alterar para modular
-          Navigator.pop(context);
-        },
+        onComplete: () => Modular.to.pop(context),
       ),
     );
   }

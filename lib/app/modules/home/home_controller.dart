@@ -1,13 +1,13 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/shared/auth/auth_controller.dart';
+import 'package:whatsapp_clone/app/shared/auth/services/auth_service.dart';
 
 part 'home_controller.g.dart';
 
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
-  AuthController auth = Modular.get();
+  AuthService auth = Modular.get();
 
   @observable
   String textSearch = '';
@@ -28,7 +28,7 @@ abstract class _HomeControllerBase with Store {
 
   @action
   logout() async {
-    await auth.logout();
+    await auth.getLogout();
     Modular.to.pushReplacementNamed('/');
   }
 }

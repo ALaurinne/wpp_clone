@@ -9,6 +9,21 @@ part of 'login_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginController on _LoginControllerBase, Store {
+  final _$userAtom = Atom(name: '_LoginControllerBase.user');
+
+  @override
+  FirebaseUser get user {
+    _$userAtom.reportRead();
+    return super.user;
+  }
+
+  @override
+  set user(FirebaseUser value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
+    });
+  }
+
   final _$loadingAtom = Atom(name: '_LoginControllerBase.loading');
 
   @override
@@ -37,17 +52,6 @@ mixin _$LoginController on _LoginControllerBase, Store {
       ActionController(name: '_LoginControllerBase');
 
   @override
-  dynamic formsValidation(dynamic formKey) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.formsValidation');
-    try {
-      return super.formsValidation(formKey);
-    } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String emailValidation(String value) {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
         name: '_LoginControllerBase.emailValidation');
@@ -70,8 +74,20 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
+  dynamic setUser(FirebaseUser value) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.setUser');
+    try {
+      return super.setUser(value);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+user: ${user},
 loading: ${loading}
     ''';
   }

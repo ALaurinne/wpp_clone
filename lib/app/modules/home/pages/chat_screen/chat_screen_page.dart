@@ -20,6 +20,7 @@ class _ChatScreenPageState
   //use 'controller' variable to access controller
   final textFieldController = TextEditingController();
 
+  // Coluna das mensagens
   Widget renderChatMessage(ChatMessage message) {
     return Column(
       children: <Widget>[
@@ -59,6 +60,7 @@ class _ChatScreenPageState
     );
   }
 
+  // Barra inferior
   Widget renderTextBox() {
     return Observer(
       builder: (_) {
@@ -76,7 +78,7 @@ class _ChatScreenPageState
                   child: TextField(
                     controller: textFieldController,
                     decoration: InputDecoration(
-                      hintText: "Your Message Here",
+                      hintText: "Digite uma mensagem",
                       hintStyle: TextStyle(
                         color: Colors.grey,
                       ),
@@ -116,25 +118,12 @@ class _ChatScreenPageState
                   },
                 ),
               ),
-              // FloatingActionButton(
-              //     mini: true,
-              //     backgroundColor: primaryColor,
-              //     onPressed: sendMessage,
-              //     child: Icon(
-              //       Icons.send,
-              //     ))
             ],
           ),
         );
       },
     );
   }
-
-  // sendMessage() {
-  //   controller.sendMessage(textFieldController.text);
-  //   textFieldController.clear();
-  //   controller.changeTyping(false);
-  // }
 
   // Corpo
   @override
@@ -229,10 +218,7 @@ class ChatLeading extends StatelessWidget {
             ),
           ],
         ),
-        onTap: () {
-          Modular.to.pop(context);
-          // Navigator.pop(context);
-        },
+        onTap: () => Modular.to.pop(context),
       ),
     );
   }

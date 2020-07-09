@@ -45,7 +45,6 @@ class _AppBarSearchState extends State<AppBarSearch> {
         filled: true,
       ),
       onChanged: widget.onSearchChange,
-      // widget.onSearchChange,
     );
   }
 }

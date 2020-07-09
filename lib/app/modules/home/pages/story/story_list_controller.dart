@@ -1,3 +1,4 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:whatsapp_clone/app/modules/home/models/story_list_models.dart';
 part 'story_list_controller.g.dart';
@@ -25,4 +26,7 @@ abstract class _StoryListControllerBase with Store {
       date: "15:00",
     ),
   ];
+
+  @action
+  accessStorys() => Modular.to.pushNamed('/home/story');
 }

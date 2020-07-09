@@ -74,9 +74,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         ),
                         validator: controller.emailValidation,
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
                       TextFormField(
                         controller: passFieldController,
                         keyboardType: TextInputType.text,
@@ -108,9 +106,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 40,
-                      ),
+                      SizedBox(height: 40),
                       controller.loading
                           ? CircularProgressIndicator(
                               valueColor:
@@ -141,9 +137,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                 ),
                               ),
                             ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ),

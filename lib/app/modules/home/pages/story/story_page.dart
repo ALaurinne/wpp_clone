@@ -28,15 +28,7 @@ class _StoryPageState extends ModularState<StoryPage, StoryListController> {
               controller.storyListItems[i].profileUrl,
             ),
           ),
-          onTap: () {
-            Modular.to.pushNamed('/story');
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => StoryViewScreen(),
-            //   ),
-            // );
-          },
+          onTap: controller.accessStorys,
         );
       },
       separatorBuilder: (ctx, i) {
