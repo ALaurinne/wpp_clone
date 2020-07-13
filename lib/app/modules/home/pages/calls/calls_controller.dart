@@ -7,6 +7,7 @@ part 'calls_controller.g.dart';
 class CallsController = _CallsControllerBase with _$CallsController;
 
 abstract class _CallsControllerBase with Store {
+  // Lista de contatos com chamadas
   final List<CallListItem> callListItem = [
     CallListItem(
       profileUrl:

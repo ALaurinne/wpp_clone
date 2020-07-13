@@ -34,7 +34,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       child: Observer(
         builder: (_) {
           return Scaffold(
-            drawer: HomeDrawer(user: widget.user, logout: controller.logout),
+            drawer: controller.isSearching
+                ? null
+                : HomeDrawer(user: widget.user, logout: controller.logout),
             appBar: AppBar(
               title: controller.isSearching
                   ? AppBarSearch(
@@ -58,7 +60,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               actions: !controller.isSearching
                   ? <Widget>[
                       IconButton(
-                        onPressed: controller.searchChat,
+                        onPressed: () => controller.searchChat(true),
                         icon: Icon(Icons.search),
                       ),
                       Padding(

@@ -35,29 +35,34 @@ abstract class _LoginControllerBase with Store {
     }
   }
 
+  // Valida forms como um todo
   @action
-  formsValidation(formKey) {
-    isValid = formKey.currentState.validate() ? true : false;
-    loading = isValid
-        ? true
-        : false; // criei esse pq ou a internet tá muito boa, ou o de cima não tá funcionando.
-  }
+  formsValidation(formKey) =>
+      isValid = formKey.currentState.validate() ? true : false;
 
+  // Validação do campo de email
   @action
   String emailValidation(String value) {
     if (value.isEmpty) {
-      return 'Please enter your email';
+      return 'Insira seu email';
     } else if (!value.contains("@")) {
-      return 'Invalid email format';
+      return 'Formato de email invalido';
     }
     return null;
   }
 
+  // Validação do campo de senha
   @action
   String passwordValidation(String value) {
-    return value.isEmpty ? 'Please enter your password' : null;
+    if (value.isEmpty) {
+      return 'Insira sua senha';
+    } else if (value.length < 6) {
+      return 'A senha tem no mínimo 6 digitos';
+    }
+    return null;
   }
 
+  // Colocando o usuario como o validado
   @action
   setUser(FirebaseUser value) => user = value;
 

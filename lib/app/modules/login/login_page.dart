@@ -31,13 +31,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                 width: 200,
                 // child: Image.asset('images/logo.png'),
               ),
-              LoginForm(
-                emailValidation: controller.emailValidation,
-                passwordValidation: controller.passwordValidation,
-                formsValidation: controller.formsValidation,
-                loginWithEmail: controller.loginWithEmail,
-                loading: controller.loading,
-              ),
+              Observer(
+                builder: (_) {
+                  return LoginForm(
+                    emailValidation: controller.emailValidation,
+                    passwordValidation: controller.passwordValidation,
+                    formsValidation: controller.formsValidation,
+                    loginWithEmail: controller.loginWithEmail,
+                    loading: controller.loading,
+                  );
+                },
+              )
             ],
           )),
     );

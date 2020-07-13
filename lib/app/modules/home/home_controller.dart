@@ -12,20 +12,24 @@ abstract class _HomeControllerBase with Store {
   @observable
   String textSearch = '';
 
-  @action
-  setTextSearch(String value) {
-    return textSearch = value;
-  }
-
   @observable
   bool isSearching = false;
 
+  // Define o valor do texto de busca
   @action
-  searchChat() {
-    isSearching = !isSearching;
-    textSearch = '';
+  setTextSearch(String value) => textSearch = value;
+
+  // Define o valor de busca
+  @action
+  setIsSearching(bool value) => isSearching = value;
+
+  // Chama as funções de texto e busca
+  searchChat(bool value) {
+    setIsSearching(value);
+    setTextSearch('');
   }
 
+  // Sai da conta logada
   @action
   logout() async {
     await auth.getLogout();

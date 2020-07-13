@@ -27,6 +27,7 @@ abstract class _StoryListControllerBase with Store {
     ),
   ];
 
+  // Encaminha para a storys
   @action
   accessStorys() => Modular.to.pushNamed('/home/story');
 }

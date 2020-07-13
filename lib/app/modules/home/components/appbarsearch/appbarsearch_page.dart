@@ -30,7 +30,7 @@ class _AppBarSearchState extends State<AppBarSearch> {
         prefixIcon: IconButton(
           icon: Icon(Icons.arrow_back),
           color: AppColors.PRIMARY_COLOR,
-          onPressed: widget.searchChat,
+          onPressed: () => widget.searchChat(false),
         ),
         suffixIcon: IconButton(
           icon: Icon(Icons.clear),

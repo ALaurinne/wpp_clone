@@ -6,6 +6,7 @@ part 'chats_controller.g.dart';
 class ChatsController = _ChatsControllerBase with _$ChatsController;
 
 abstract class _ChatsControllerBase with Store {
+  // Lista Observavel de Conversas
   @observable
   ObservableList<ChatListItem> chatListItems = [
     ChatListItem(
@@ -82,9 +83,11 @@ abstract class _ChatsControllerBase with Store {
     ),
   ].asObservable();
 
+  // Filtro para busca
   @observable
   String filter = '';
 
+  // Lista filtrada pelo filtro com a lista observavel
   @computed
   List<ChatListItem> get listFiltered {
     return filter.isEmpty
@@ -122,6 +125,7 @@ abstract class _ChatsControllerBase with Store {
     return filter = value;
   }
 
+  // Encaminha para as mensagens da pessoa
   @action
   accessChat(ChatListItem person) =>
       Modular.to.pushNamed('/home/screen', arguments: person);

@@ -61,11 +61,11 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
-  dynamic searchChat() {
+  dynamic setIsSearching(bool value) {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.searchChat');
+        name: '_HomeControllerBase.setIsSearching');
     try {
-      return super.searchChat();
+      return super.setIsSearching(value);
     } finally {
       _$_HomeControllerBaseActionController.endAction(_$actionInfo);
     }

@@ -11,9 +11,6 @@ abstract class _ChatScreenControllerBase with Store {
   @observable
   bool isTyping = false;
 
-  @action
-  changeTyping(bool value) => isTyping = value;
-
   @observable
   ObservableList<ChatMessage> messages = [
     ChatMessage(isSentByMe: false, message: "Oláaa"),
@@ -36,8 +33,11 @@ abstract class _ChatScreenControllerBase with Store {
     ChatMessage(isSentByMe: false, message: "Vai dar certo"),
   ].asObservable();
 
+  // Altera o valor de "Está Digitando"
   @action
-  sendMessage(String message) {
-    messages.add(ChatMessage(message: message));
-  }
+  changeTyping(bool value) => isTyping = value;
+
+  // Adiciona a mensagem enviada a lista
+  @action
+  sendMessage(String message) => messages.add(ChatMessage(message: message));
 }

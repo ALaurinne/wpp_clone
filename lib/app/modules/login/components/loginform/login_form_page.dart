@@ -83,34 +83,30 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           SizedBox(height: 40),
-          Observer(
-            builder: (_) {
-              return widget.loading
-                  ? CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          AppColors.PRIMARY_COLOR),
-                    )
-                  : Container(
-                      height: 60,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.PRIMARY_COLOR,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: FlatButton(
-                        onPressed: () {
-                          widget.formsValidation(formKey);
-                          widget.loginWithEmail(emailFieldController.text,
-                              passFieldController.text);
-                        },
-                        child: Text(
-                          "Log In",
-                          style: TextStyles.LOGIN_BUTTON,
-                        ),
-                      ),
-                    );
-            },
-          ),
+          widget.loading
+              ? CircularProgressIndicator(
+                  valueColor:
+                      AlwaysStoppedAnimation<Color>(AppColors.PRIMARY_COLOR),
+                )
+              : Container(
+                  height: 60,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: AppColors.PRIMARY_COLOR,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: FlatButton(
+                    onPressed: () {
+                      widget.formsValidation(formKey);
+                      widget.loginWithEmail(
+                          emailFieldController.text, passFieldController.text);
+                    },
+                    child: Text(
+                      "Log In",
+                      style: TextStyles.LOGIN_BUTTON,
+                    ),
+                  ),
+                ),
         ],
       ),
     );
