@@ -7,7 +7,7 @@ class AppColors {
   static const CHECKMARK_COLOR = Color(0xFF34B7F1);
   static const CHAT_BUBBLE_COLOR = Color(0xFFDCF8C6);
   static const NOTIFICATION_COLOR = Color(0xFF25D366);
-  static const ON_LABEL = Colors.grey;
-  static const ON_FORM = Colors.black;
-  static const ON_PERFIL_DATA = Colors.white;
+  static const BLACK = Colors.black;
+  static const GREY = Colors.grey;
+  static const WHITE = Colors.white;
 }

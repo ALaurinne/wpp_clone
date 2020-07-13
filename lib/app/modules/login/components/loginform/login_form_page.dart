@@ -78,9 +78,7 @@ class _LoginFormState extends State<LoginForm> {
               onPressed: () {},
               child: Text(
                 "Forgot Password?",
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
+                style: TextStyles.FORGOT_BUTTON,
               ),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'package:whatsapp_clone/app/modules/home/models/chat_list_item_models.dart';
+import 'package:whatsapp_clone/app/shared/constants/text_styles.dart';
 import 'chats_controller.dart';
 
 class ChatsPage extends StatefulWidget {
@@ -64,11 +65,8 @@ class ChatsListView extends StatelessWidget {
                   Text(
                     list[i].date,
                     style: list[i].notRead
-                        ? TextStyle(
-                            color: AppColors.SECONDARY_COLOR,
-                            fontWeight: FontWeight.bold,
-                          )
-                        : TextStyle(color: Colors.grey),
+                        ? TextStyles.LIST_NOT_READ
+                        : TextStyles.LIST_READ,
                   ),
                   Padding(
                     padding: EdgeInsets.all(5),
@@ -83,10 +81,7 @@ class ChatsListView extends StatelessWidget {
                     child: Center(
                       child: Text(
                         '3',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyles.NUMBER_NOT_READ,
                       ),
                     ),
                   ),

@@ -1,5 +1,6 @@
 // APP BAR NORMAL
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/app/shared/constants/text_styles.dart';
 
 class AppBarTitle extends StatelessWidget {
   const AppBarTitle({
@@ -10,7 +11,7 @@ class AppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "WhatsApp",
-      style: TextStyle(fontWeight: FontWeight.bold),
+      style: TextStyles.APP_BAR_TITLE,
     );
   }
 }

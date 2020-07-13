@@ -50,7 +50,7 @@ class _ChatScreenPageState
             ),
             child: Text(
               message.message,
-              style: TextStyles.CHAT_MESSAGE_LABEL,
+              style: TextStyles.CHAT_MESSAGE,
             ),
           ),
         ),
@@ -77,9 +77,7 @@ class _ChatScreenPageState
                     controller: textFieldController,
                     decoration: InputDecoration(
                       hintText: "Digite uma mensagem",
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
+                      hintStyle: TextStyles.HINT_LABEL,
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.camera_alt,
@@ -139,7 +137,7 @@ class _ChatScreenPageState
             Padding(padding: EdgeInsets.all(1)),
             Text(
               "online",
-              style: TextStyle(fontSize: 12),
+              style: TextStyles.APP_BAR_SUBTITLE,
             ),
           ],
         ),
