@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
+import 'package:whatsapp_clone/app/shared/constants/text_styles.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm(
@@ -28,10 +29,6 @@ class _LoginFormState extends State<LoginForm> {
 
   final formKey = GlobalKey<FormState>();
 
-  String email = '';
-
-  String password = '';
-
   void initState() {
     super.initState();
     emailFieldController = TextEditingController();
@@ -57,16 +54,9 @@ class _LoginFormState extends State<LoginForm> {
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               labelText: "Email",
-              labelStyle: TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.w400,
-                fontSize: 20,
-              ),
+              labelStyle: TextStyles.LABEL,
             ),
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-            ),
+            style: TextStyles.FORM,
             validator: widget.emailValidation,
           ),
           SizedBox(height: 20),
@@ -76,16 +66,9 @@ class _LoginFormState extends State<LoginForm> {
             obscureText: true,
             decoration: InputDecoration(
               labelText: "Password",
-              labelStyle: TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.w400,
-                fontSize: 20,
-              ),
+              labelStyle: TextStyles.LABEL,
             ),
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-            ),
+            style: TextStyles.FORM,
             validator: widget.passwordValidation,
           ),
           Container(
@@ -106,17 +89,15 @@ class _LoginFormState extends State<LoginForm> {
             builder: (_) {
               return widget.loading
                   ? CircularProgressIndicator(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          AppColors.PRIMARY_COLOR),
                     )
                   : Container(
                       height: 60,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: AppColors.primaryColor,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5),
-                        ),
+                        color: AppColors.PRIMARY_COLOR,
+                        borderRadius: BorderRadius.circular(5),
                       ),
                       child: FlatButton(
                         onPressed: () {
@@ -126,11 +107,7 @@ class _LoginFormState extends State<LoginForm> {
                         },
                         child: Text(
                           "Log In",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
+                          style: TextStyles.LOGIN_BUTTON,
                         ),
                       ),
                     );

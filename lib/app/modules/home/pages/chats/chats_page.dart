@@ -36,7 +36,7 @@ class _ChatsPageState extends ModularState<ChatsPage, ChatsController> {
           Icons.chat,
           color: Colors.white,
         ),
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: AppColors.PRIMARY_COLOR,
       ),
     );
   }
@@ -65,8 +65,9 @@ class ChatsListView extends StatelessWidget {
                     list[i].date,
                     style: list[i].notRead
                         ? TextStyle(
-                            color: AppColors.secondaryColor,
-                            fontWeight: FontWeight.bold)
+                            color: AppColors.SECONDARY_COLOR,
+                            fontWeight: FontWeight.bold,
+                          )
                         : TextStyle(color: Colors.grey),
                   ),
                   Padding(
@@ -76,7 +77,7 @@ class ChatsListView extends StatelessWidget {
                     width: list[i].notRead ? 30 : 0, // gambiarra
                     height: list[i].notRead ? 30 : 0, // mais gambiarra
                     decoration: BoxDecoration(
-                      color: AppColors.secondaryColor,
+                      color: AppColors.SECONDARY_COLOR,
                       borderRadius: BorderRadius.all(Radius.circular(100)),
                     ),
                     child: Center(
@@ -93,16 +94,12 @@ class ChatsListView extends StatelessWidget {
               ),
               leading: CircleAvatar(
                 backgroundColor: Colors.grey,
-                backgroundImage: NetworkImage(
-                  list[i].profileUrl,
-                ),
+                backgroundImage: NetworkImage(list[i].profileUrl),
               ),
               onTap: () => accessChat(list[i]),
             );
           },
-          separatorBuilder: (ctx, i) {
-            return Divider();
-          },
+          separatorBuilder: (ctx, i) => Divider(),
         );
       },
     );

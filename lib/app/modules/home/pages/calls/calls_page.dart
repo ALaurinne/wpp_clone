@@ -26,7 +26,7 @@ class _CallsPageState extends ModularState<CallsPage, CallsController> {
             onPressed: () {},
             icon: Icon(
               controller.callListItem[i].isCall ? Icons.call : Icons.videocam,
-              color: AppColors.primaryColor,
+              color: AppColors.PRIMARY_COLOR,
             ),
           ),
           leading: CircleAvatar(

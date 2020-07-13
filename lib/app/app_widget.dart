@@ -10,10 +10,10 @@ class AppWidget extends StatelessWidget {
       title: 'Flutter Slidy',
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: AppColors.primaryColor,
+        primaryColor: AppColors.PRIMARY_COLOR,
       ),
       darkTheme: ThemeData(
-          primaryColor: AppColors.primaryColor, brightness: Brightness.dark),
+          primaryColor: AppColors.PRIMARY_COLOR, brightness: Brightness.dark),
       initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,
     );

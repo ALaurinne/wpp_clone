@@ -43,7 +43,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       onClear: () => controller.setTextSearch(''),
                     )
                   : AppBarTitle(),
-              backgroundColor: AppColors.primaryColor,
+              backgroundColor: AppColors.PRIMARY_COLOR,
               bottom: controller.isSearching
                   ? null
                   : TabBar(

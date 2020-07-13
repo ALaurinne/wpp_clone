@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
+import 'package:whatsapp_clone/app/shared/constants/text_styles.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({
@@ -28,43 +29,28 @@ class HomeDrawer extends StatelessWidget {
                       ? NetworkImage('${user.photoUrl}')
                       : Colors.grey,
                 ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                ),
+                Padding(padding: EdgeInsets.all(5)),
                 Text(
                   'Olá ${user.displayName}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
+                  style: TextStyles.PERFIL_NAME_TEXT,
                   textAlign: TextAlign.center,
                 ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                ),
+                Padding(padding: EdgeInsets.all(5)),
                 Text(
                   '${user.phoneNumber}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
+                  style: TextStyles.PERFIL_ITEM_TEXT,
                   textAlign: TextAlign.center,
                 ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                ),
+                Padding(padding: EdgeInsets.all(5)),
                 Text(
                   '${user.email}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
+                  style: TextStyles.PERFIL_ITEM_TEXT,
                   textAlign: TextAlign.center,
                 ),
               ],
             ),
             decoration: BoxDecoration(
-              color: AppColors.primaryColor,
+              color: AppColors.PRIMARY_COLOR,
             ),
           ),
           ListTile(
