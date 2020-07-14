@@ -9,11 +9,16 @@ part 'login_controller.g.dart';
 class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
-  // chama auth com o controller do AuthController
+  // chama auth com o AuthService
   final AuthService auth;
 
+  _LoginControllerBase(this.auth);
+
   @observable
-  FirebaseUser user;
+  bool naoEntrouNoLogin = false;
+
+  @observable
+  bool naoAchouUsuario = false;
 
   @observable
   bool loading = false;
@@ -21,18 +26,60 @@ abstract class _LoginControllerBase with Store {
   @observable
   bool isValid = false;
 
+  @observable
+  bool inLogin = true;
+
+  @action
+  alreadyHaveAccount(bool value) => inLogin = value;
+
+  singUpButton() {
+    if (inLogin == true) {
+      return alreadyHaveAccount(false);
+    }
+    return null;
+  }
+
+  verifyLoggedUser() async {
+    var user = await auth.getUser();
+    if (user != null) {
+      Modular.to.pushReplacementNamed('/home', arguments: user);
+    }
+  }
+
   @action
   Future loginWithEmail(String email, String password) async {
     if (isValid) {
       try {
         loading = true;
-        user = await auth.getEmailPasswordLogin(email, password);
+        FirebaseUser user = await auth.getEmailPasswordLogin(email, password);
         Modular.to.pushReplacementNamed('/home', arguments: user);
       } catch (e) {
-        print(e.toString());
         loading = false;
+        naoAchouUsuario = true;
+        print(e.toString());
       }
     }
+    naoEntrouNoLogin = true;
+  }
+
+  // funciona e salva no firebase
+  // não parece com o que foi mostrado anteriormente
+  @action
+  Future createAccountWithEmail(String email, String password) async {
+    if (isValid) {
+      try {
+        loading = true;
+        FirebaseUser user = await auth.setUser(email, password);
+        Modular.to.pushReplacementNamed('/home', arguments: user);
+        return user;
+      } catch (e) {
+        loading = false;
+        naoAchouUsuario = true;
+        print(e.toString());
+        return e;
+      }
+    }
+    naoEntrouNoLogin = true;
   }
 
   // Valida forms como um todo
@@ -62,11 +109,14 @@ abstract class _LoginControllerBase with Store {
     return null;
   }
 
-  // Colocando o usuario como o validado
+  // Validação do campo de senha
   @action
-  setUser(FirebaseUser value) => user = value;
-
-  _LoginControllerBase(this.auth) {
-    auth.getUser().then(setUser);
+  String nameValidation(String value) {
+    if (value.isEmpty) {
+      return 'Insira seu nome';
+    } else if (!value.contains(" ")) {
+      return 'Seu nome completo';
+    }
+    return null;
   }
 }

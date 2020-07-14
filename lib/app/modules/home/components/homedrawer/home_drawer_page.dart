@@ -26,7 +26,8 @@ class HomeDrawer extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: Colors.grey,
                   backgroundImage: user.photoUrl.toString().isNotEmpty
-                      ? NetworkImage('${user.photoUrl}')
+                      ? NetworkImage(
+                          'https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/11/logo-whatsapp-sem-fundo.png?fit=2400%2C2400&ssl=1')
                       : Colors.grey,
                 ),
                 Padding(padding: EdgeInsets.all(5)),

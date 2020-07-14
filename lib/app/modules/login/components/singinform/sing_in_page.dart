@@ -3,13 +3,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'package:whatsapp_clone/app/shared/constants/text_styles.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm(
+class SingIn extends StatefulWidget {
+  const SingIn(
       {Key key,
       this.emailValidation,
       this.passwordValidation,
       this.formsValidation,
       this.loginWithEmail,
+      this.singUpButton,
       this.loading})
       : super(key: key);
 
@@ -17,13 +18,14 @@ class LoginForm extends StatefulWidget {
   final Function passwordValidation;
   final Function formsValidation;
   final Function loginWithEmail;
+  final Function singUpButton;
   final bool loading;
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _SingInState createState() => _SingInState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SingInState extends State<SingIn> {
   TextEditingController emailFieldController;
   TextEditingController passFieldController;
 
@@ -65,7 +67,7 @@ class _LoginFormState extends State<LoginForm> {
             keyboardType: TextInputType.text,
             obscureText: true,
             decoration: InputDecoration(
-              labelText: "Password",
+              labelText: "Senha",
               labelStyle: TextStyles.LABEL,
             ),
             style: TextStyles.FORM,
@@ -77,7 +79,7 @@ class _LoginFormState extends State<LoginForm> {
             child: FlatButton(
               onPressed: () {},
               child: Text(
-                "Forgot Password?",
+                "Esqueceu a senha?",
                 style: TextStyles.FORGOT_BUTTON,
               ),
             ),
@@ -86,26 +88,46 @@ class _LoginFormState extends State<LoginForm> {
           widget.loading
               ? CircularProgressIndicator(
                   valueColor:
-                      AlwaysStoppedAnimation<Color>(AppColors.PRIMARY_COLOR),
+                      AlwaysStoppedAnimation<Color>(AppColors.SECONDARY_COLOR),
                 )
-              : Container(
-                  height: 60,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppColors.PRIMARY_COLOR,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: FlatButton(
-                    onPressed: () {
-                      widget.formsValidation(formKey);
-                      widget.loginWithEmail(
-                          emailFieldController.text, passFieldController.text);
-                    },
-                    child: Text(
-                      "Log In",
-                      style: TextStyles.LOGIN_BUTTON,
+              : Column(
+                  children: <Widget>[
+                    Container(
+                      height: 60,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.SECONDARY_COLOR,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: FlatButton(
+                        onPressed: () {
+                          widget.formsValidation(formKey);
+                          widget.loginWithEmail(emailFieldController.text,
+                              passFieldController.text);
+                        },
+                        child: Text(
+                          "Entrar",
+                          style: TextStyles.LOGIN_BUTTON,
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 20),
+                    Container(
+                      height: 60,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.SECONDARY_COLOR,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: FlatButton(
+                        onPressed: widget.singUpButton,
+                        child: Text(
+                          "Cadastre-se",
+                          style: TextStyles.LOGIN_BUTTON,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
         ],
       ),

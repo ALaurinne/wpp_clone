@@ -9,21 +9,6 @@ part of 'login_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginController on _LoginControllerBase, Store {
-  final _$userAtom = Atom(name: '_LoginControllerBase.user');
-
-  @override
-  FirebaseUser get user {
-    _$userAtom.reportRead();
-    return super.user;
-  }
-
-  @override
-  set user(FirebaseUser value) {
-    _$userAtom.reportWrite(value, super.user, () {
-      super.user = value;
-    });
-  }
-
   final _$loadingAtom = Atom(name: '_LoginControllerBase.loading');
 
   @override
@@ -54,6 +39,21 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
+  final _$inLoginAtom = Atom(name: '_LoginControllerBase.inLogin');
+
+  @override
+  bool get inLogin {
+    _$inLoginAtom.reportRead();
+    return super.inLogin;
+  }
+
+  @override
+  set inLogin(bool value) {
+    _$inLoginAtom.reportWrite(value, super.inLogin, () {
+      super.inLogin = value;
+    });
+  }
+
   final _$loginWithEmailAsyncAction =
       AsyncAction('_LoginControllerBase.loginWithEmail');
 
@@ -65,6 +65,17 @@ mixin _$LoginController on _LoginControllerBase, Store {
 
   final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase');
+
+  @override
+  dynamic alreadyHaveAccount(bool value) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.alreadyHaveAccount');
+    try {
+      return super.alreadyHaveAccount(value);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic formsValidation(dynamic formKey) {
@@ -100,11 +111,11 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
-  dynamic setUser(FirebaseUser value) {
+  String nameValidation(String value) {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.setUser');
+        name: '_LoginControllerBase.nameValidation');
     try {
-      return super.setUser(value);
+      return super.nameValidation(value);
     } finally {
       _$_LoginControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -113,9 +124,9 @@ mixin _$LoginController on _LoginControllerBase, Store {
   @override
   String toString() {
     return '''
-user: ${user},
 loading: ${loading},
-isValid: ${isValid}
+isValid: ${isValid},
+inLogin: ${inLogin}
     ''';
   }
 }

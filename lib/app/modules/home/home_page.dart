@@ -24,7 +24,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends ModularState<HomePage, HomeController> {
   //use 'controller' variable to access controller
 
-  String text;
+  @override
+  void initState() {
+    controller.verifyLoggedUser();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

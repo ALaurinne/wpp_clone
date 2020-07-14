@@ -29,8 +29,14 @@ abstract class _HomeControllerBase with Store {
     setTextSearch('');
   }
 
+  verifyLoggedUser() async {
+    var user = await auth.getUser();
+    if (user == null) {
+      Modular.to.pushReplacementNamed('/');
+    }
+  }
+
   // Sai da conta logada
-  @action
   logout() async {
     await auth.getLogout();
     Modular.to.pushReplacementNamed('/');

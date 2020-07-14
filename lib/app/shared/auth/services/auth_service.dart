@@ -30,4 +30,17 @@ class AuthService implements IAuthService {
   Future getLogout() {
     return _auth.signOut();
   }
+
+  @override
+  Future<FirebaseUser> setUser(email, password) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser user = result.user;
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return e;
+    }
+  }
 }
