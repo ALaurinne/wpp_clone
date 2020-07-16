@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/shared/auth/services/auth_service.dart';
+import 'package:whatsapp_clone/app/shared/services/auth/auth_service.dart';
 
 part 'home_controller.g.dart';
 

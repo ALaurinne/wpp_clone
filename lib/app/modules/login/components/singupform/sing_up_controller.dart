@@ -1,18 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:whatsapp_clone/app/modules/login/components/singupform/model/user_model.dart';
 import 'package:whatsapp_clone/app/shared/services/auth/auth_service.dart';
+import 'package:whatsapp_clone/app/shared/services/singup_auth/sing_up_auth_service.dart';
 
-part 'login_controller.g.dart';
+part 'sing_up_controller.g.dart';
 
-class LoginController = _LoginControllerBase with _$LoginController;
+class SingUpController = _SingUpControllerBase with _$SingUpController;
 
-abstract class _LoginControllerBase with Store {
-  // chama auth com o AuthService
-  final AuthService auth;
+abstract class _SingUpControllerBase with Store {
+  final SingUpAuth singUpAuth;
 
-  _LoginControllerBase(this.auth);
+  _SingUpControllerBase(this.singUpAuth);
 
   @observable
   bool naoEntrouNoLogin = false;
@@ -27,58 +27,37 @@ abstract class _LoginControllerBase with Store {
   bool isValid = false;
 
   @observable
-  bool inLogin = true;
+  bool sucess = false;
+
+  @observable
+  var user = UserModel(dados: Dados());
 
   @action
-  alreadyHaveAccount(bool value) => inLogin = value;
-
-  singUpButton() {
-    if (inLogin == true) {
-      return alreadyHaveAccount(false);
-    }
-    return null;
-  }
-
-  verifyLoggedUser() async {
-    var user = await auth.getUser();
-    if (user != null) {
-      Modular.to.pushReplacementNamed('/home', arguments: user);
-    }
-  }
-
-  @action
-  Future loginWithEmail(String email, String password) async {
+  setUser(String name, String email, String password) {
     if (isValid) {
-      try {
-        loading = true;
-        FirebaseUser user = await auth.getEmailPasswordLogin(email, password);
-        Modular.to.pushReplacementNamed('/home', arguments: user);
-      } catch (e) {
-        loading = false;
-        naoAchouUsuario = true;
-        print(e.toString());
-      }
+      user.dados.nome = name;
+      user.dados.email = email;
+      user.senha = password;
     }
-    naoEntrouNoLogin = true;
   }
 
   // funciona e salva no firebase
   // não parece com o que foi mostrado anteriormente
   @action
-  Future createAccountWithEmail(String email, String password) async {
+  Future createAccount() async {
     if (isValid) {
       try {
         loading = true;
-        FirebaseUser user = await auth.setUser(email, password);
-        Modular.to.pushReplacementNamed('/home', arguments: user);
-        return user;
+        await singUpAuth.singUp(user);
+        sucess = true;
       } catch (e) {
         loading = false;
+        sucess = false;
         naoAchouUsuario = true;
         print(e.toString());
-        return e;
       }
     }
+    loading = false;
     naoEntrouNoLogin = true;
   }
 
@@ -115,7 +94,7 @@ abstract class _LoginControllerBase with Store {
     if (value.isEmpty) {
       return 'Insira seu nome';
     } else if (!value.contains(" ")) {
-      return 'Seu nome completo';
+      return 'Nome incompleto';
     }
     return null;
   }

@@ -3,8 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'package:whatsapp_clone/app/shared/constants/text_styles.dart';
 
-class SingIn extends StatefulWidget {
-  const SingIn(
+class SingInPage extends StatefulWidget {
+  const SingInPage(
       {Key key,
       this.emailValidation,
       this.passwordValidation,
@@ -22,10 +22,10 @@ class SingIn extends StatefulWidget {
   final bool loading;
 
   @override
-  _SingInState createState() => _SingInState();
+  _SingInPageState createState() => _SingInPageState();
 }
 
-class _SingInState extends State<SingIn> {
+class _SingInPageState extends State<SingInPage> {
   TextEditingController emailFieldController;
   TextEditingController passFieldController;
 

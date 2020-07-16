@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:whatsapp_clone/app/modules/login/components/singupform/sing_up_controller.dart';
 import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
 import 'package:whatsapp_clone/app/shared/constants/text_styles.dart';
 
-class SingUpForm extends StatefulWidget {
-  const SingUpForm(
-      {Key key,
-      this.emailValidation,
-      this.nameValidation,
-      this.passwordValidation,
-      this.formsValidation,
-      this.createAccountWithEmail,
-      this.alreadyHaveAccount,
-      this.loading})
+import 'sing_up_controller.dart';
+
+class SingUpPage extends StatefulWidget {
+  const SingUpPage({Key key, this.alreadyHaveAccount, this.loading})
       : super(key: key);
 
-  final Function emailValidation;
-  final Function nameValidation;
-  final Function passwordValidation;
-  final Function formsValidation;
-  final Function createAccountWithEmail;
   final Function alreadyHaveAccount;
-
   final bool loading;
 
   @override
-  _SingUpFormState createState() => _SingUpFormState();
+  _SingUpPageState createState() => _SingUpPageState();
 }
 
-class _SingUpFormState extends State<SingUpForm> {
+class _SingUpPageState extends ModularState<SingUpPage, SingUpController> {
   TextEditingController nameFieldController;
   TextEditingController emailFieldController;
   TextEditingController passFieldController;
@@ -65,7 +55,7 @@ class _SingUpFormState extends State<SingUpForm> {
               labelStyle: TextStyles.LABEL,
             ),
             style: TextStyles.FORM,
-            validator: widget.nameValidation,
+            validator: controller.nameValidation,
           ),
           SizedBox(height: 20),
           TextFormField(
@@ -76,7 +66,7 @@ class _SingUpFormState extends State<SingUpForm> {
               labelStyle: TextStyles.LABEL,
             ),
             style: TextStyles.FORM,
-            validator: widget.emailValidation,
+            validator: controller.emailValidation,
           ),
           SizedBox(height: 20),
           TextFormField(
@@ -88,44 +78,64 @@ class _SingUpFormState extends State<SingUpForm> {
               labelStyle: TextStyles.LABEL,
             ),
             style: TextStyles.FORM,
-            validator: widget.passwordValidation,
+            validator: controller.passwordValidation,
           ),
           SizedBox(height: 40),
-          widget.loading
-              ? CircularProgressIndicator(
-                  valueColor:
-                      AlwaysStoppedAnimation<Color>(AppColors.PRIMARY_COLOR),
-                )
-              : Container(
-                  height: 60,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppColors.SECONDARY_COLOR,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: FlatButton(
-                    onPressed: () {
-                      widget.formsValidation(formKey);
-                      widget.createAccountWithEmail(
-                          emailFieldController.text, passFieldController.text);
-                    },
-                    child: Text(
-                      "Cadastrar",
-                      style: TextStyles.LOGIN_BUTTON,
-                    ),
-                  ),
-                ),
-          Container(
-            height: 40,
-            alignment: Alignment.center,
-            child: FlatButton(
-              onPressed: () => widget.alreadyHaveAccount(true),
-              child: Text(
-                "Voltar",
-                style: TextStyles.FORGOT_BUTTON,
-              ),
-            ),
-          ),
+          Observer(
+            builder: (_) {
+              return controller.loading
+                  ? CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          AppColors.PRIMARY_COLOR),
+                    )
+                  : Column(children: <Widget>[
+                      Container(
+                        height: 60,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppColors.SECONDARY_COLOR,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: FlatButton(
+                          onPressed: () {
+                            controller.formsValidation(formKey);
+                            controller.setUser(
+                                nameFieldController.text,
+                                emailFieldController.text,
+                                passFieldController.text);
+                            controller.createAccount();
+                            // TODO voltar para o login
+                            // widget.alreadyHaveAccount(controller.sucess);
+                            // TODO melhorar dialog para o erro
+                            // if (controller.naoEntrouNoLogin) {
+                            //   showDialog(
+                            //       context: context,
+                            //       builder: (_) => AlertDialog(
+                            //             title: Text("Tente novamente"),
+                            //           ),
+                            //       barrierDismissible: true);
+                            // }
+                          },
+                          child: Text(
+                            "Cadastrar",
+                            style: TextStyles.LOGIN_BUTTON,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 40,
+                        alignment: Alignment.center,
+                        child: FlatButton(
+                          onPressed: () => widget.alreadyHaveAccount(true),
+                          child: Text(
+                            "Voltar",
+                            style: TextStyles.FORGOT_BUTTON,
+                          ),
+                        ),
+                      )
+                    ]);
+            },
+          )
         ],
       ),
     );

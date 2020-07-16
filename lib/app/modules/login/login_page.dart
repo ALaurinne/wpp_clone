@@ -43,7 +43,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
               Observer(
                 builder: (_) {
                   return controller.inLogin
-                      ? SingIn(
+                      ? SingInPage(
                           emailValidation: controller.emailValidation,
                           passwordValidation: controller.passwordValidation,
                           formsValidation: controller.formsValidation,
@@ -51,14 +51,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           loading: controller.loading,
                           singUpButton: controller.singUpButton,
                         )
-                      : SingUpForm(
-                          emailValidation: controller.emailValidation,
-                          passwordValidation: controller.passwordValidation,
-                          formsValidation: controller.formsValidation,
-                          createAccountWithEmail:
-                              controller.createAccountWithEmail,
+                      : SingUpPage(
                           loading: controller.loading,
-                          nameValidation: controller.nameValidation,
                           alreadyHaveAccount: controller.alreadyHaveAccount,
                         );
                 },

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_controller.dart';
+part of 'sing_up_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'login_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$LoginController on _LoginControllerBase, Store {
+mixin _$SingUpController on _SingUpControllerBase, Store {
   final _$naoEntrouNoLoginAtom =
-      Atom(name: '_LoginControllerBase.naoEntrouNoLogin');
+      Atom(name: '_SingUpControllerBase.naoEntrouNoLogin');
 
   @override
   bool get naoEntrouNoLogin {
@@ -26,7 +26,7 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   final _$naoAchouUsuarioAtom =
-      Atom(name: '_LoginControllerBase.naoAchouUsuario');
+      Atom(name: '_SingUpControllerBase.naoAchouUsuario');
 
   @override
   bool get naoAchouUsuario {
@@ -41,7 +41,7 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  final _$loadingAtom = Atom(name: '_LoginControllerBase.loading');
+  final _$loadingAtom = Atom(name: '_SingUpControllerBase.loading');
 
   @override
   bool get loading {
@@ -56,7 +56,7 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  final _$isValidAtom = Atom(name: '_LoginControllerBase.isValid');
+  final _$isValidAtom = Atom(name: '_SingUpControllerBase.isValid');
 
   @override
   bool get isValid {
@@ -71,94 +71,99 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  final _$inLoginAtom = Atom(name: '_LoginControllerBase.inLogin');
+  final _$sucessAtom = Atom(name: '_SingUpControllerBase.sucess');
 
   @override
-  bool get inLogin {
-    _$inLoginAtom.reportRead();
-    return super.inLogin;
+  bool get sucess {
+    _$sucessAtom.reportRead();
+    return super.sucess;
   }
 
   @override
-  set inLogin(bool value) {
-    _$inLoginAtom.reportWrite(value, super.inLogin, () {
-      super.inLogin = value;
+  set sucess(bool value) {
+    _$sucessAtom.reportWrite(value, super.sucess, () {
+      super.sucess = value;
     });
   }
 
-  final _$loginWithEmailAsyncAction =
-      AsyncAction('_LoginControllerBase.loginWithEmail');
+  final _$userAtom = Atom(name: '_SingUpControllerBase.user');
 
   @override
-  Future<dynamic> loginWithEmail(String email, String password) {
-    return _$loginWithEmailAsyncAction
-        .run(() => super.loginWithEmail(email, password));
+  UserModel get user {
+    _$userAtom.reportRead();
+    return super.user;
   }
 
-  final _$createAccountWithEmailAsyncAction =
-      AsyncAction('_LoginControllerBase.createAccountWithEmail');
-
   @override
-  Future<dynamic> createAccountWithEmail(String email, String password) {
-    return _$createAccountWithEmailAsyncAction
-        .run(() => super.createAccountWithEmail(email, password));
+  set user(UserModel value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
+    });
   }
 
-  final _$_LoginControllerBaseActionController =
-      ActionController(name: '_LoginControllerBase');
+  final _$createAccountAsyncAction =
+      AsyncAction('_SingUpControllerBase.createAccount');
 
   @override
-  dynamic alreadyHaveAccount(bool value) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.alreadyHaveAccount');
+  Future<dynamic> createAccount() {
+    return _$createAccountAsyncAction.run(() => super.createAccount());
+  }
+
+  final _$_SingUpControllerBaseActionController =
+      ActionController(name: '_SingUpControllerBase');
+
+  @override
+  dynamic setUser(String name, String email, String password) {
+    final _$actionInfo = _$_SingUpControllerBaseActionController.startAction(
+        name: '_SingUpControllerBase.setUser');
     try {
-      return super.alreadyHaveAccount(value);
+      return super.setUser(name, email, password);
     } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+      _$_SingUpControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic formsValidation(dynamic formKey) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.formsValidation');
+    final _$actionInfo = _$_SingUpControllerBaseActionController.startAction(
+        name: '_SingUpControllerBase.formsValidation');
     try {
       return super.formsValidation(formKey);
     } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+      _$_SingUpControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String emailValidation(String value) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.emailValidation');
+    final _$actionInfo = _$_SingUpControllerBaseActionController.startAction(
+        name: '_SingUpControllerBase.emailValidation');
     try {
       return super.emailValidation(value);
     } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+      _$_SingUpControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String passwordValidation(String value) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.passwordValidation');
+    final _$actionInfo = _$_SingUpControllerBaseActionController.startAction(
+        name: '_SingUpControllerBase.passwordValidation');
     try {
       return super.passwordValidation(value);
     } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+      _$_SingUpControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String nameValidation(String value) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.nameValidation');
+    final _$actionInfo = _$_SingUpControllerBaseActionController.startAction(
+        name: '_SingUpControllerBase.nameValidation');
     try {
       return super.nameValidation(value);
     } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+      _$_SingUpControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
@@ -169,7 +174,8 @@ naoEntrouNoLogin: ${naoEntrouNoLogin},
 naoAchouUsuario: ${naoAchouUsuario},
 loading: ${loading},
 isValid: ${isValid},
-inLogin: ${inLogin}
+sucess: ${sucess},
+user: ${user}
     ''';
   }
 }
