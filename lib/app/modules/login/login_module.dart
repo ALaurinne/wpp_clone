@@ -1,3 +1,4 @@
+import 'package:whatsapp_clone/app/modules/login/components/singinform/sing_in_controller.dart';
 import 'package:whatsapp_clone/app/modules/login/components/singupform/sing_up_controller.dart';
 import 'package:whatsapp_clone/app/modules/login/components/singupform/sing_up_page.dart';
 import 'package:whatsapp_clone/app/modules/login/login_page.dart';
@@ -13,6 +14,7 @@ class LoginModule extends ChildModule {
   List<Bind> get binds => [
         Bind((i) => LoginController(i.get<AuthService>())),
         Bind((i) => SingUpController(i.get<SingUpAuth>())),
+        Bind((i) => SingInController(i.get<AuthService>())),
       ];
 
   @override

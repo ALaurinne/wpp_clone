@@ -40,6 +40,41 @@ class _SingUpPageState extends ModularState<SingUpPage, SingUpController> {
     passFieldController.dispose();
   }
 
+  void loginOption(form, name, email, pass) async {
+    controller.formsValidation(form);
+    controller.setUser(
+      name,
+      email,
+      pass,
+    );
+    await controller.createAccount();
+    widget.alreadyHaveAccount(controller.sucess);
+    if (controller.naoCadastrou && controller.isValid) {
+      showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (_) {
+          return AlertDialog(
+            title: Text('Tente novamente'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text('Ocorreu um erro em sua solicitação.'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('OK'),
+                onPressed: controller.dismissAlert,
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -98,16 +133,14 @@ class _SingUpPageState extends ModularState<SingUpPage, SingUpController> {
                         ),
                         child: FlatButton(
                           onPressed: () {
-                            controller.formsValidation(formKey);
-                            controller.setUser(
-                                nameFieldController.text,
-                                emailFieldController.text,
-                                passFieldController.text);
-                            controller.createAccount();
-                            // TODO voltar para o login
-                            // widget.alreadyHaveAccount(controller.sucess);
+                            loginOption(
+                              formKey,
+                              nameFieldController.text,
+                              emailFieldController.text,
+                              passFieldController.text,
+                            );
                             // TODO melhorar dialog para o erro
-                            // if (controller.naoEntrouNoLogin) {
+                            // if (controller.naoAchouUsuario) {
                             //   showDialog(
                             //       context: context,
                             //       builder: (_) => AlertDialog(

@@ -44,15 +44,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                 builder: (_) {
                   return controller.inLogin
                       ? SingInPage(
-                          emailValidation: controller.emailValidation,
-                          passwordValidation: controller.passwordValidation,
-                          formsValidation: controller.formsValidation,
-                          loginWithEmail: controller.loginWithEmail,
-                          loading: controller.loading,
                           singUpButton: controller.singUpButton,
                         )
                       : SingUpPage(
-                          loading: controller.loading,
                           alreadyHaveAccount: controller.alreadyHaveAccount,
                         );
                 },

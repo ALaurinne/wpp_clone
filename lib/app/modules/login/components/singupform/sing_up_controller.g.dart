@@ -9,35 +9,18 @@ part of 'sing_up_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SingUpController on _SingUpControllerBase, Store {
-  final _$naoEntrouNoLoginAtom =
-      Atom(name: '_SingUpControllerBase.naoEntrouNoLogin');
+  final _$naoCadastrouAtom = Atom(name: '_SingUpControllerBase.naoCadastrou');
 
   @override
-  bool get naoEntrouNoLogin {
-    _$naoEntrouNoLoginAtom.reportRead();
-    return super.naoEntrouNoLogin;
+  bool get naoCadastrou {
+    _$naoCadastrouAtom.reportRead();
+    return super.naoCadastrou;
   }
 
   @override
-  set naoEntrouNoLogin(bool value) {
-    _$naoEntrouNoLoginAtom.reportWrite(value, super.naoEntrouNoLogin, () {
-      super.naoEntrouNoLogin = value;
-    });
-  }
-
-  final _$naoAchouUsuarioAtom =
-      Atom(name: '_SingUpControllerBase.naoAchouUsuario');
-
-  @override
-  bool get naoAchouUsuario {
-    _$naoAchouUsuarioAtom.reportRead();
-    return super.naoAchouUsuario;
-  }
-
-  @override
-  set naoAchouUsuario(bool value) {
-    _$naoAchouUsuarioAtom.reportWrite(value, super.naoAchouUsuario, () {
-      super.naoAchouUsuario = value;
+  set naoCadastrou(bool value) {
+    _$naoCadastrouAtom.reportWrite(value, super.naoCadastrou, () {
+      super.naoCadastrou = value;
     });
   }
 
@@ -124,6 +107,17 @@ mixin _$SingUpController on _SingUpControllerBase, Store {
   }
 
   @override
+  dynamic dismissAlert() {
+    final _$actionInfo = _$_SingUpControllerBaseActionController.startAction(
+        name: '_SingUpControllerBase.dismissAlert');
+    try {
+      return super.dismissAlert();
+    } finally {
+      _$_SingUpControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic formsValidation(dynamic formKey) {
     final _$actionInfo = _$_SingUpControllerBaseActionController.startAction(
         name: '_SingUpControllerBase.formsValidation');
@@ -170,8 +164,7 @@ mixin _$SingUpController on _SingUpControllerBase, Store {
   @override
   String toString() {
     return '''
-naoEntrouNoLogin: ${naoEntrouNoLogin},
-naoAchouUsuario: ${naoAchouUsuario},
+naoCadastrou: ${naoCadastrou},
 loading: ${loading},
 isValid: ${isValid},
 sucess: ${sucess},

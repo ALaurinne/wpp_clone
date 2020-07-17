@@ -1,21 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/modules/login/components/singupform/model/user_model.dart';
 import 'package:whatsapp_clone/app/shared/services/auth/auth_service.dart';
-import 'package:whatsapp_clone/app/shared/services/singup_auth/sing_up_auth_service.dart';
 
-part 'sing_up_controller.g.dart';
+part 'sing_in_controller.g.dart';
 
-class SingUpController = _SingUpControllerBase with _$SingUpController;
+class SingInController = _SingInControllerBase with _$SingInController;
 
-abstract class _SingUpControllerBase with Store {
-  final SingUpAuth singUpAuth;
+abstract class _SingInControllerBase with Store {
+  // chama auth com o AuthService
+  final AuthService auth;
 
-  _SingUpControllerBase(this.singUpAuth);
+  _SingInControllerBase(this.auth);
 
   @observable
-  bool naoCadastrou = false;
+  bool naoEntrouNoLogin = false;
+
+  @observable
+  bool naoAchouUsuario = false;
 
   @observable
   bool loading = false;
@@ -24,42 +27,45 @@ abstract class _SingUpControllerBase with Store {
   bool isValid = false;
 
   @observable
-  bool sucess = false;
-
-  @observable
-  var user = UserModel(dados: Dados());
+  bool inLogin = true;
 
   @action
-  setUser(String name, String email, String password) {
-    if (isValid) {
-      user.dados.nome = name;
-      user.dados.email = email;
-      user.senha = password;
+  alreadyHaveAccount(bool value) => inLogin = value;
+
+  singUpButton() {
+    if (inLogin == true) {
+      return alreadyHaveAccount(false);
     }
+    return null;
   }
 
-// Esperando implementação do AlertDialog
   @action
   dismissAlert() {
-    naoCadastrou = false;
+    naoAchouUsuario = false;
     Modular.to.pop();
   }
 
+  verifyLoggedUser() async {
+    var user = await auth.getUser();
+    if (user != null) {
+      Modular.to.pushReplacementNamed('/home', arguments: user);
+    }
+  }
+
   @action
-  Future createAccount() async {
+  Future loginWithEmail(String email, String password) async {
     if (isValid) {
       try {
         loading = true;
-        await singUpAuth.singUp(user);
-        sucess = true;
+        FirebaseUser user = await auth.getEmailPasswordLogin(email, password);
+        Modular.to.pushReplacementNamed('/home', arguments: user);
       } catch (e) {
         loading = false;
-        sucess = false;
-        naoCadastrou = true;
+        naoAchouUsuario = true;
         print(e.toString());
       }
     }
-    loading = false;
+    naoEntrouNoLogin = true;
   }
 
   // Valida forms como um todo
@@ -95,7 +101,7 @@ abstract class _SingUpControllerBase with Store {
     if (value.isEmpty) {
       return 'Insira seu nome';
     } else if (!value.contains(" ")) {
-      return 'Nome incompleto';
+      return 'Seu nome completo';
     }
     return null;
   }
