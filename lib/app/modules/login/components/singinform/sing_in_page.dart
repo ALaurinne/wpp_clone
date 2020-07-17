@@ -134,25 +134,21 @@ class _SingInPageState extends ModularState<SingInPage, SingInController> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        Observer(
-                          builder: (_) {
-                            return Container(
-                              height: 60,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: AppColors.SECONDARY_COLOR,
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: FlatButton(
-                                onPressed: widget.singUpButton,
-                                child: Text(
-                                  "Cadastre-se",
-                                  style: TextStyles.LOGIN_BUTTON,
-                                ),
-                              ),
-                            );
-                          },
-                        )
+                        Container(
+                          height: 60,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: AppColors.SECONDARY_COLOR,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: FlatButton(
+                            onPressed: widget.singUpButton,
+                            child: Text(
+                              "Cadastre-se",
+                              style: TextStyles.LOGIN_BUTTON,
+                            ),
+                          ),
+                        ),
                       ],
                     );
             },
