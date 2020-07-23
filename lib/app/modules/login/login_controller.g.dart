@@ -24,6 +24,29 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
+  final _$verificatedAtom = Atom(name: '_LoginControllerBase.verificated');
+
+  @override
+  bool get verificated {
+    _$verificatedAtom.reportRead();
+    return super.verificated;
+  }
+
+  @override
+  set verificated(bool value) {
+    _$verificatedAtom.reportWrite(value, super.verificated, () {
+      super.verificated = value;
+    });
+  }
+
+  final _$verifyLoggedUserAsyncAction =
+      AsyncAction('_LoginControllerBase.verifyLoggedUser');
+
+  @override
+  Future verifyLoggedUser() {
+    return _$verifyLoggedUserAsyncAction.run(() => super.verifyLoggedUser());
+  }
+
   final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase');
 
@@ -41,7 +64,8 @@ mixin _$LoginController on _LoginControllerBase, Store {
   @override
   String toString() {
     return '''
-inLogin: ${inLogin}
+inLogin: ${inLogin},
+verificated: ${verificated}
     ''';
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:whatsapp_clone/app/app_module.dart';
 import 'package:whatsapp_clone/app/modules/home/home_module.dart';
-import 'package:whatsapp_clone/app/modules/login/login_controller.dart';
+import 'package:whatsapp_clone/app/modules/login/components/singupform/sing_up_controller.dart';
 import 'package:whatsapp_clone/app/modules/login/login_module.dart';
 import 'package:flutter_modular/flutter_modular_test.dart';
 
@@ -14,7 +14,7 @@ void main() {
   initModule(AppModule());
   initModule(LoginModule());
 
-  final LoginController login = Modular.get();
+  final SingUpController login = Modular.get();
   Random random = new Random();
   final int number = random.nextInt(100);
 
@@ -61,13 +61,13 @@ void main() {
   });
 
   // NÃO FUNCIONA AINDA
-  test('Formulario não validado, não deve pesquisar no firebase', () async {
+  test('Formulario não validado, não deve criar no firebase', () async {
     //setup
     login.isValid = false;
-    await login.createAccountWithEmail('lau@lau.com', '123456');
-    var result = login.naoEntrouNoLogin;
+    await login.setUser('lau', 'lau@lau.com', '123456');
+    await login.createAccount();
     //verify
-    expect(result, true);
+    expect(login.sucess, false);
   });
 
   // NÃO FUNCIONA AINDA
@@ -75,19 +75,19 @@ void main() {
       () async {
     //setup
     login.isValid = true;
-    var result =
-        await login.createAccountWithEmail('teste@teste.com', '123456');
+    await login.setUser('lau', 'teste@teste.com', '123456');
+    var result = await login.createAccount();
     //verify
-    expect(result, true);
+    expect(result, "error");
   });
 
   // NÃO FUNCIONA AINDA
   test('Formulario validado, deve acessar o home', () async {
     //setup
     login.isValid = true;
-    var result =
-        await login.createAccountWithEmail("teste+$number@teste.com", "123456");
+    await login.setUser('Teste Teste', "teste+$number@teste.com", '123456');
+    await login.createAccount();
     //verify
-    expect(result, true);
+    expect(login.sucess, true);
   });
 }

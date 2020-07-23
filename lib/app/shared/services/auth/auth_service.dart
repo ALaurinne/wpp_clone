@@ -20,6 +20,11 @@ class AuthService implements IAuthService {
     }
   }
 
+  Future<String> get bearerToken {
+    return getUser()
+        .then((user) => user.getIdToken().then((idToken) => idToken.token));
+  }
+
   //
   @override
   Future<FirebaseUser> getUser() {

@@ -1,4 +1,5 @@
 import 'package:whatsapp_clone/app/modules/login/login_module.dart';
+import 'package:whatsapp_clone/app/shared/services/messages/messages_service.dart';
 import 'package:whatsapp_clone/app/shared/services/singup_auth/sing_up_auth_service.dart';
 import 'app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -14,6 +15,7 @@ class AppModule extends MainModule {
         Bind((i) => AppController()),
         Bind((i) => SingUpAuth()),
         Bind<IAuthService>((i) => AuthService()),
+        Bind((i) => MessageService(i.get<AuthService>())),
       ];
 
   @override

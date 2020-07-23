@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chats/models/chats_model_item.dart';
 import 'package:whatsapp_clone/app/shared/constants/appcolors.dart';
-import 'package:whatsapp_clone/app/modules/home/models/chat_list_item_models.dart';
 import 'package:whatsapp_clone/app/shared/constants/text_styles.dart';
 import 'chat_screen_controller.dart';
-import 'models/chat_message_models.dart';
+import 'models/chat_message_model.dart';
 
 class ChatScreenPage extends StatefulWidget {
-  final ChatListItem person;
+  final ChatModelItem person;
 
   const ChatScreenPage({Key key, this.person}) : super(key: key);
 
@@ -22,12 +22,13 @@ class _ChatScreenPageState
   final textFieldController = TextEditingController();
 
   // Coluna das mensagens
-  Widget renderChatMessage(ChatMessage message) {
+  Widget renderChatMessage(MessageModel message) {
     return Column(
       children: <Widget>[
         Align(
-          alignment:
-              message.isSentByMe ? Alignment.centerRight : Alignment.centerLeft,
+          alignment: message.remetente == widget.person.remetenteId
+              ? Alignment.centerLeft
+              : Alignment.centerRight,
           child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: 10,
@@ -38,7 +39,9 @@ class _ChatScreenPageState
               vertical: 10,
             ),
             decoration: BoxDecoration(
-              color: message.isSentByMe ? Color(0xFFDCF8C6) : Colors.white,
+              color: message.remetente == widget.person.remetenteId
+                  ? Colors.white
+                  : AppColors.CHAT_BUBBLE_COLOR,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 2,
@@ -49,7 +52,7 @@ class _ChatScreenPageState
               borderRadius: BorderRadius.circular(4),
             ),
             child: Text(
-              message.message,
+              message.texto,
               style: TextStyles.CHAT_MESSAGE,
             ),
           ),
@@ -107,8 +110,9 @@ class _ChatScreenPageState
                     controller.isTyping ? Icons.send : Icons.mic,
                     color: Colors.white,
                   ),
-                  onPressed: () {
-                    controller.sendMessage(textFieldController.text);
+                  onPressed: () async {
+                    await controller.setMessage(textFieldController.text);
+                    controller.sendMessage();
                     textFieldController.clear();
                     controller.changeTyping(false);
                   },
@@ -127,12 +131,12 @@ class _ChatScreenPageState
     return Scaffold(
       backgroundColor: AppColors.CHAT_BACKGROUND_COLOR,
       appBar: AppBar(
-        leading: ChatLeading(profileUrl: widget.person.profileUrl),
+        leading: ChatLeading(profileUrl: widget.person.imagem),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              widget.person.personName,
+              widget.person.nome,
             ),
             Padding(padding: EdgeInsets.all(1)),
             Text(
@@ -162,9 +166,9 @@ class _ChatScreenPageState
             children: <Widget>[
               Flexible(
                 child: ListView.builder(
-                  itemCount: controller.messages.length,
+                  itemCount: controller.messagesList.length,
                   itemBuilder: (ctx, i) =>
-                      renderChatMessage(controller.messages[i]),
+                      renderChatMessage(controller.messagesList[i]),
                 ),
               ),
               Divider(),
@@ -195,7 +199,7 @@ class ChatLeading extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8, left: 2, bottom: 8),
       child: InkWell(
         // poder criar um botão de algo que não era para ser um botão
-        borderRadius: BorderRadius.all(Radius.circular(100)),
+        borderRadius: BorderRadius.circular(100),
         // deixando as bordas circulares
         child: Row(
           // uma linha com conteudo

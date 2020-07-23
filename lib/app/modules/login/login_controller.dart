@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -17,6 +19,9 @@ abstract class _LoginControllerBase with Store {
   @observable
   bool inLogin = true;
 
+  @observable
+  bool verificated = false;
+
   @action
   alreadyHaveAccount(bool value) => inLogin = value;
 
@@ -27,6 +32,7 @@ abstract class _LoginControllerBase with Store {
     return null;
   }
 
+  @action
   verifyLoggedUser() async {
     var user = await auth.getUser();
     if (user != null) {

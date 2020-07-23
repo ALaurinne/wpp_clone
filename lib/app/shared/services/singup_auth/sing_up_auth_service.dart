@@ -3,10 +3,12 @@ import 'package:whatsapp_clone/app/modules/login/components/singupform/model/use
 
 class SingUpAuth {
   singUp(UserModel user) async {
-    final dio = new Dio();
+    final dio = Dio(BaseOptions(
+      baseUrl: "https://us-central1-estagio-clima.cloudfunctions.net",
+    ));
     await dio.post(
-        "https://us-central1-estagio-clima.cloudfunctions.net/api/v1/usuarios_chat",
-        data: user.toJson());
-    // print("sucess");
+      "/api/v1/usuarios_chat",
+      data: user.toJson(),
+    );
   }
 }

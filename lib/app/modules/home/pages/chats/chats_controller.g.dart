@@ -9,24 +9,24 @@ part of 'chats_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ChatsController on _ChatsControllerBase, Store {
-  Computed<List<ChatListItem>> _$listFilteredComputed;
+  Computed<List<ChatModelItem>> _$listFilterComputed;
 
   @override
-  List<ChatListItem> get listFiltered => (_$listFilteredComputed ??=
-          Computed<List<ChatListItem>>(() => super.listFiltered,
-              name: '_ChatsControllerBase.listFiltered'))
+  List<ChatModelItem> get listFilter => (_$listFilterComputed ??=
+          Computed<List<ChatModelItem>>(() => super.listFilter,
+              name: '_ChatsControllerBase.listFilter'))
       .value;
 
   final _$chatListItemsAtom = Atom(name: '_ChatsControllerBase.chatListItems');
 
   @override
-  ObservableList<ChatListItem> get chatListItems {
+  ObservableList<ChatModelItem> get chatListItems {
     _$chatListItemsAtom.reportRead();
     return super.chatListItems;
   }
 
   @override
-  set chatListItems(ObservableList<ChatListItem> value) {
+  set chatListItems(ObservableList<ChatModelItem> value) {
     _$chatListItemsAtom.reportWrite(value, super.chatListItems, () {
       super.chatListItems = value;
     });
@@ -51,40 +51,7 @@ mixin _$ChatsController on _ChatsControllerBase, Store {
       ActionController(name: '_ChatsControllerBase');
 
   @override
-  dynamic newChat() {
-    final _$actionInfo = _$_ChatsControllerBaseActionController.startAction(
-        name: '_ChatsControllerBase.newChat');
-    try {
-      return super.newChat();
-    } finally {
-      _$_ChatsControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic changeMessage() {
-    final _$actionInfo = _$_ChatsControllerBaseActionController.startAction(
-        name: '_ChatsControllerBase.changeMessage');
-    try {
-      return super.changeMessage();
-    } finally {
-      _$_ChatsControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setFilter(String value) {
-    final _$actionInfo = _$_ChatsControllerBaseActionController.startAction(
-        name: '_ChatsControllerBase.setFilter');
-    try {
-      return super.setFilter(value);
-    } finally {
-      _$_ChatsControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic accessChat(ChatListItem person) {
+  dynamic accessChat(ChatModelItem person) {
     final _$actionInfo = _$_ChatsControllerBaseActionController.startAction(
         name: '_ChatsControllerBase.accessChat');
     try {
@@ -99,7 +66,7 @@ mixin _$ChatsController on _ChatsControllerBase, Store {
     return '''
 chatListItems: ${chatListItems},
 filter: ${filter},
-listFiltered: ${listFiltered}
+listFilter: ${listFilter}
     ''';
   }
 }

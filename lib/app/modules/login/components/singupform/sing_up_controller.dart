@@ -35,6 +35,8 @@ abstract class _SingUpControllerBase with Store {
       user.dados.nome = name;
       user.dados.email = email;
       user.senha = password;
+      user.dados.foto =
+          "https://media-exp1.licdn.com/dms/image/C4E03AQF2zvSzkSaXIw/profile-displayphoto-shrink_400_400/0?e=1600905600&v=beta&t=6x75hDJzs6e8ZnYEZalzOvEqhuoPzrKPnkwLuzRooBA";
     }
   }
 
