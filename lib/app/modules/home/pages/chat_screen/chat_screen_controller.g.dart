@@ -9,6 +9,37 @@ part of 'chat_screen_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ChatScreenController on _ChatScreenControllerBase, Store {
+  final _$messagesListAtom =
+      Atom(name: '_ChatScreenControllerBase.messagesList');
+
+  @override
+  ObservableList<MessageModel> get messagesList {
+    _$messagesListAtom.reportRead();
+    return super.messagesList;
+  }
+
+  @override
+  set messagesList(ObservableList<MessageModel> value) {
+    _$messagesListAtom.reportWrite(value, super.messagesList, () {
+      super.messagesList = value;
+    });
+  }
+
+  final _$messageAtom = Atom(name: '_ChatScreenControllerBase.message');
+
+  @override
+  MessageModel get message {
+    _$messageAtom.reportRead();
+    return super.message;
+  }
+
+  @override
+  set message(MessageModel value) {
+    _$messageAtom.reportWrite(value, super.message, () {
+      super.message = value;
+    });
+  }
+
   final _$isTypingAtom = Atom(name: '_ChatScreenControllerBase.isTyping');
 
   @override
@@ -24,23 +55,27 @@ mixin _$ChatScreenController on _ChatScreenControllerBase, Store {
     });
   }
 
-  final _$messagesAtom = Atom(name: '_ChatScreenControllerBase.messages');
+  final _$sendMessageAsyncAction =
+      AsyncAction('_ChatScreenControllerBase.sendMessage');
 
   @override
-  ObservableList<ChatMessage> get messages {
-    _$messagesAtom.reportRead();
-    return super.messages;
-  }
-
-  @override
-  set messages(ObservableList<ChatMessage> value) {
-    _$messagesAtom.reportWrite(value, super.messages, () {
-      super.messages = value;
-    });
+  Future<dynamic> sendMessage() {
+    return _$sendMessageAsyncAction.run(() => super.sendMessage());
   }
 
   final _$_ChatScreenControllerBaseActionController =
       ActionController(name: '_ChatScreenControllerBase');
+
+  @override
+  dynamic setMessage(String text) {
+    final _$actionInfo = _$_ChatScreenControllerBaseActionController
+        .startAction(name: '_ChatScreenControllerBase.setMessage');
+    try {
+      return super.setMessage(text);
+    } finally {
+      _$_ChatScreenControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic changeTyping(bool value) {
@@ -54,21 +89,11 @@ mixin _$ChatScreenController on _ChatScreenControllerBase, Store {
   }
 
   @override
-  dynamic sendMessage(String message) {
-    final _$actionInfo = _$_ChatScreenControllerBaseActionController
-        .startAction(name: '_ChatScreenControllerBase.sendMessage');
-    try {
-      return super.sendMessage(message);
-    } finally {
-      _$_ChatScreenControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-isTyping: ${isTyping},
-messages: ${messages}
+messagesList: ${messagesList},
+message: ${message},
+isTyping: ${isTyping}
     ''';
   }
 }

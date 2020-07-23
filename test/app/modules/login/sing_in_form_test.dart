@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:whatsapp_clone/app/app_module.dart';
 import 'package:whatsapp_clone/app/modules/home/home_module.dart';
-import 'package:whatsapp_clone/app/modules/login/login_controller.dart';
+import 'package:whatsapp_clone/app/modules/login/components/singinform/sing_in_controller.dart';
 import 'package:whatsapp_clone/app/modules/login/login_module.dart';
 import 'package:flutter_modular/flutter_modular_test.dart';
 
@@ -14,7 +13,7 @@ void main() {
   initModule(AppModule());
   initModule(LoginModule());
 
-  final LoginController login = Modular.get();
+  final SingInController login = Modular.get();
 
   test('Email vazio deve devolver um erro', () {
     //setup
